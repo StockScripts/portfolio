@@ -1,17 +1,17 @@
 export interface Quote {
-  AverageDailyVolume: any;
-  Change: Number;
-  DaysLow: any;
-  DaysHigh: any;
-  YearLow: any;
-  YearHigh: any;
-  MarketCapitalization: any;
-  LastTradePriceOnly: any;
-  DaysRange: any;
-  Name: String;
-  Symbol: any;
-  Volume: any;
-  StockExchange: any;
+  AverageDailyVolume: number;
+  Change: number;
+  DaysLow: number;
+  DaysHigh: number;
+  YearLow: number;
+  YearHigh: number;
+  MarketCapitalization: number;
+  LastTradePriceOnly: number;
+  DaysRange: string;
+  Name: string;
+  Symbol: string;
+  Volume: number;
+  StockExchange: string;
 }
 
 export interface QuoteSearch {

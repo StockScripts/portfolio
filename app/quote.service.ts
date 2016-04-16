@@ -14,7 +14,7 @@ export class QuoteService {
     if (symbols.length === 0) return Observable.empty();
     return this._http.get('http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20in%20(%22' + symbols.join('%22,%22') + '%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys')
           .map((response: Response) => [].concat(response.json().query.results.quote)
-              .reduce((o, v: Quote) => Object.assign(o, {[v.Symbol]: {price: v.LastTradePriceOnly, change: v.Change}}), {}));
+              .reduce((o: Object, v: Quote) => Object.assign(o, {[v.Symbol]: {price: v.LastTradePriceOnly, change: v.Change}}), {}));
   }
 
   searchQuotes(query: string): Observable<QuoteSearch[]> {

@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Stock, StockPrices} from './interfaces';
+import {QuoteSearch, Stock, StockPrices} from './interfaces';
 import {QuoteService} from './quote.service';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class StocksService {
     });
   }
 
-  AddStock(stock, quantity: number): void {
+  AddStock(stock: QuoteSearch, quantity: number): void {
     this.stocks.push(<Stock>{Symbol: stock.symbol, Name: stock.name, Quantity: quantity});
     this.SaveToLocalStorage();
   }

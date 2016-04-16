@@ -38,7 +38,7 @@ export class AddNewStockComponent {
      });
   }
 
-  addItem(stock: Quote, value: number): void {
+  addItem(stock: QuoteSearch, value: number): void {
     this.stocks = [];
     this._stocksService.AddStock(stock, value);
     this._snackbarService.showSnackbar('Added', () => this._router.navigate(['Portfolio', {}]), 'Return to Portfolio');
