@@ -1,6 +1,8 @@
 import {Injectable} from 'angular2/core';
 import {QuoteSearch, Stock, StockPrices} from './interfaces';
 import {QuoteService} from './quote.service';
+import {Observable} from 'rxjs/Observable';
+
 
 @Injectable()
 export class StocksService {
@@ -8,37 +10,34 @@ export class StocksService {
   stockPrices: StockPrices;
 
   constructor(private _quoteService: QuoteService) {
-    this.stocks = JSON.parse(localStorage['portfolio'] || '[]' );
+    this.stocks = JSON.parse(localStorage['portfolio'] || '[]');
     this.stockPrices = {};
   }
 
-  DeleteStock(i: number): Promise<Stock[]> {
+  DeleteStock(i: number): void {
     this.stocks.splice(i, 1);
     this.SaveToLocalStorage();
-    return this.GetStocks();
   }
 
-  GetStocks(): Promise<Stock[]> {
-    return new Promise((resolve, reject) => {
-      var required: string[] = this.stocks.filter(d => !this.stockPrices[d.Symbol]).map(d => d.Symbol);
-      this._quoteService.getPrices(required).subscribe(
-        d => Object.assign(this.stockPrices, d),
-        () => reject('Error loading data from YAHOO'),
-        () => resolve(this.stocks.map(s => (
-            { Symbol: s.Symbol,
-              Name: s.Name,
-              Quantity: s.Quantity,
-              Price: this.stockPrices[s.Symbol].price,
-              Change: this.stockPrices[s.Symbol].change
-            }
-          )
-        ))
-      );
-    });
+  GetStocks(): Observable<Stock[]> {
+    const required: string[] = this.stocks.filter(d => !this.stockPrices[d.Symbol]).map(d => d.Symbol);
+    return this._quoteService.getPrices(required)
+      .map(prices => {
+        Object.assign(this.stockPrices, prices);
+        return this.stocks.map(({Symbol, Name, Quantity}) => (
+          {
+            Symbol,
+            Name,
+            Quantity,
+            Price: this.stockPrices[Symbol].price,
+            Change: this.stockPrices[Symbol].change
+          })
+        );
+      });
   }
 
   AddStock(stock: QuoteSearch, quantity: number): void {
-    this.stocks.push(<Stock>{Symbol: stock.symbol, Name: stock.name, Quantity: quantity});
+    this.stocks.push(<Stock>{ Symbol: stock.symbol, Name: stock.name, Quantity: quantity });
     this.SaveToLocalStorage();
   }
 

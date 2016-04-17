@@ -29,20 +29,20 @@ export class PortfolioComponent implements OnInit {
   ngOnInit(): void {
     const timeout: number = window.setTimeout(() => this.loading = true, 500);
 
-    this._stocksService.GetStocks().then(s => {
-      this.loading = false;
-      clearTimeout(timeout);
-      this.stocks = s;
-    }, (error) => {
+    this._stocksService.GetStocks()
+      .subscribe(
+        stocks => this.stocks = stocks,
+        error => this._snackbarService.showSnackbar('Error loading data from YAHOO')
+      )
+      .add(() => {
         this.loading = false;
         clearTimeout(timeout);
-        this._snackbarService.showSnackbar(error);
-      }
-    );
+      });
   };
 
   delete(i: number): void {
-    this._stocksService.DeleteStock(i).then(s => this.stocks = s);
+    this._stocksService.DeleteStock(i);
+    this.stocks.splice(i, 1);
   }
 
 }
