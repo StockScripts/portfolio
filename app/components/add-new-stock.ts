@@ -1,41 +1,41 @@
 import {Component, Output, Directive, ElementRef, AfterViewInit} from 'angular2/core';
-import {QuoteService} from './quote.service';
-import {Quote, QuoteSearch} from './interfaces';
-import {StocksService} from './stocks.service';
-import {SnackbarService} from './snackbar.service';
 import {Router} from 'angular2/router';
+import {Quote, QuoteSearch} from '../interfaces';
+import QuoteService from '../services/quote';
+import StocksService from '../services/stocks';
+import SnackbarService from '../services/snackbar';
 
 @Directive({
   selector: '[mdlFocus]'
 })
 export class MdlFocus implements AfterViewInit {
-    constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
-    ngAfterViewInit(): void {
-        componentHandler.upgradeElement(this.elementRef.nativeElement.parentElement);
-        this.elementRef.nativeElement.focus();
-    }
+  ngAfterViewInit(): void {
+    componentHandler.upgradeElement(this.elementRef.nativeElement.parentElement);
+    this.elementRef.nativeElement.focus();
+  }
 }
 @Component({
   selector: 'add-new-stock',
-  styles: [require('./add-new-stock-component.css')],
-  template: require('./add-new-stock-component.html'),
+  styles: [require('./add-new-stock.css')],
+  template: require('./add-new-stock.html'),
   directives: [MdlFocus]
 })
-export class AddNewStockComponent {
+export default class {
   stocks: any[];
   constructor(private _quoteService: QuoteService,
     private _stocksService: StocksService,
     private _snackbarService: SnackbarService,
     private _router: Router
-    ) { }
+  ) { }
 
   selectItem(stock: QuoteSearch): void {
     this._quoteService.getPrices([stock.symbol])
-     .subscribe(price => {
+      .subscribe(price => {
         this.stocks = [stock];
         this.stocks[0].price = price[stock.symbol].price;
-     });
+      });
   }
 
   addItem(stock: QuoteSearch, value: number): void {
@@ -48,7 +48,10 @@ export class AddNewStockComponent {
     this.stocks = [];
 
     this._quoteService.searchQuotes(query)
-      .subscribe(data => this.stocks = data);
+      .subscribe(
+        data => this.stocks = data,
+        error => this._snackbarService.showSnackbar('Error loading data from YAHOO')
+      );
   }
 
 }

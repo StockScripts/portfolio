@@ -1,7 +1,7 @@
 import {Component, Directive, OnInit, AfterViewInit, ElementRef} from 'angular2/core';
-import {Stock} from './interfaces';
-import {StocksService} from './stocks.service';
-import {SnackbarService} from './snackbar.service';
+import {Stock} from '../interfaces';
+import StocksService from '../services/stocks';
+import SnackbarService from '../services/snackbar';
 
 @Directive({
   selector: '[greenRed]'
@@ -15,11 +15,11 @@ export class GreenRed implements AfterViewInit {
 }
 @Component({
   selector: 'portfolio',
-  styles: [require('./portfolio.component.css')],
-  template: require('./portfolio.component.html'),
+  styles: [require('./portfolio.css')],
+  template: require('./portfolio.html'),
   directives: [GreenRed]
 })
-export class PortfolioComponent implements OnInit {
+export default class implements OnInit {
 
   stocks: Stock[];
   loading: boolean;

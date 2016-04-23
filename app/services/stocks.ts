@@ -1,18 +1,14 @@
 import {Injectable} from 'angular2/core';
-import {QuoteSearch, Stock, StockPrices} from './interfaces';
-import {QuoteService} from './quote.service';
 import {Observable} from 'rxjs/Observable';
-
+import {QuoteSearch, Stock, StockPrices} from '../interfaces';
+import QuoteService from './quote';
 
 @Injectable()
-export class StocksService {
-  stocks: Stock[];
-  stockPrices: StockPrices;
+export default class {
+  stocks: Stock[] = JSON.parse(localStorage['portfolio'] || '[]');
+  stockPrices: StockPrices = {};
 
-  constructor(private _quoteService: QuoteService) {
-    this.stocks = JSON.parse(localStorage['portfolio'] || '[]');
-    this.stockPrices = {};
-  }
+  constructor(private _quoteService: QuoteService) {  }
 
   DeleteStock(i: number): void {
     this.stocks.splice(i, 1);

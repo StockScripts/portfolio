@@ -3,8 +3,8 @@ import {HTTP_PROVIDERS, JSONP_PROVIDERS} from 'angular2/http';
 import {provide, enableProdMode} from 'angular2/core';
 import {RouteConfig, LocationStrategy, HashLocationStrategy, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
-import {AppComponent} from './app.component';
-import {QuoteService} from './quote.service';
+import AppComponent from './components/app';
+import QuoteService from './services/quote';
 
 if ('production' === NODE_ENV) enableProdMode();
 
