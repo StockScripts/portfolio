@@ -19,3 +19,8 @@
     color: rgba(0,0,0,.54);
     float:right
   }
+  .mdl-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }

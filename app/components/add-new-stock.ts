@@ -1,4 +1,4 @@
-import {Component, Output, Directive, ElementRef, AfterViewInit} from 'angular2/core';
+import {Component, Output, Directive, ElementRef, AfterViewInit, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Quote, QuoteSearch} from '../interfaces';
 import QuoteService from '../services/quote';
@@ -22,13 +22,18 @@ export class MdlFocus implements AfterViewInit {
   template: require('./add-new-stock.html'),
   directives: [MdlFocus]
 })
-export default class {
+export default class implements OnInit {
   stocks: any[];
+  loading: boolean = false;
   constructor(private _quoteService: QuoteService,
     private _stocksService: StocksService,
     private _snackbarService: SnackbarService,
     private _router: Router
   ) { }
+
+  ngOnInit() {
+        componentHandler.upgradeDom();
+  }
 
   selectItem(stock: QuoteSearch): void {
     this._quoteService.getPrices([stock.symbol])
@@ -47,11 +52,12 @@ export default class {
   submitQuery(query: string): void {
     this.stocks = [];
 
+    this.loading = true;
     this._quoteService.searchQuotes(query)
       .subscribe(
         data => this.stocks = data,
         error => this._snackbarService.showSnackbar('Error loading data from YAHOO')
-      );
+      ).add(() => this.loading = false);
   }
 
 }
