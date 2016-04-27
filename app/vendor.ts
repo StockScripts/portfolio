@@ -4,6 +4,7 @@ import 'zone.js/dist/zone';
 import 'zone.js/dist/long-stack-trace-zone';
 import 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/Observable/of';
 
 import 'angular2/platform/browser';
 import 'angular2/http';
