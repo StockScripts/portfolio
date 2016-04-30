@@ -28,11 +28,7 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.js'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-        except: ['RouterLink', 'NgFor', 'NgIf']
-      }
-    }),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin()
   ]
 };
