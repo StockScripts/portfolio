@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="#stock of stocks; #i = index" (click)="delete(i)">
+        <tr *ngFor="let stock of stocks; let i = index" (click)="delete(i)">
           <td class="mdl-data-table__cell--non-numeric">{{stock.Name}}</td>
           <td>{{stock.Quantity}}</td>
           <td>{{stock.Price*1 | number:'1.2-2'}}</td>

@@ -7,7 +7,7 @@
       <label class="mdl-textfield__label" for="addStock">Stock</label>
     </div>
     <ul class="stocks mdl-list">
-      <li *ngFor="#stock of stocks" (click)="selectItem(stock)" class="mdl-list__item mdl-list__item--two-line">
+      <li *ngFor="let stock of stocks" (click)="selectItem(stock)" class="mdl-list__item mdl-list__item--two-line">
         <span class="mdl-list__item-primary-content">
           <span class="stock-price">{{stock.price}}</span>
           <span>{{stock.name}}</span>
