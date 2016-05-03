@@ -1,8 +1,8 @@
-import {bootstrap} from 'angular2/platform/browser';
-import {HTTP_PROVIDERS, JSONP_PROVIDERS} from 'angular2/http';
-import {provide, enableProdMode} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
-import {LocationStrategy, HashLocationStrategy} from 'angular2/platform/common';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {HTTP_PROVIDERS, JSONP_PROVIDERS} from '@angular/http';
+import {provide, enableProdMode} from '@angular/core';
+import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import AppComponent from './components/app';
 import QuoteService from './services/quote';

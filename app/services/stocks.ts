@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {QuoteSearch, Stock, StockPrices} from '../interfaces';
 import QuoteService from './quote';

@@ -1,5 +1,5 @@
-import {Injectable} from 'angular2/core';
-import {Jsonp, Http, Response, URLSearchParams} from 'angular2/http';
+import {Injectable} from '@angular/core';
+import {Jsonp, Http, Response, URLSearchParams} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/Observable/of';
 
@@ -13,7 +13,7 @@ export default class {
 
     if (symbols.length === 0) return Observable.of(<StockPrices>{});
 
-    return this._http.get(`http://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in ("${symbols.join('","')}")&format=json&env=store://datatables.org/alltableswithkeys`)
+    return this._http.get(`https://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quote where symbol in ("${symbols.join('","')}")&format=json&env=store://datatables.org/alltableswithkeys`)
           .map((response: Response) => [].concat(response.json().query.results.quote)
               .reduce((o: Object, v: Quote) => Object.assign(o, {[v.Symbol]: {price: v.LastTradePriceOnly, change: v.Change}}), {}));
   }

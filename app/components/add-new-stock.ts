@@ -1,5 +1,5 @@
-import {Component, Output, Directive, ElementRef, AfterViewInit, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
+import {Component, Output, Directive, ElementRef, AfterViewInit, OnInit} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
 import {Quote, QuoteSearch} from '../interfaces';
 import QuoteService from '../services/quote';
 import StocksService from '../services/stocks';
@@ -31,7 +31,7 @@ export default class implements OnInit {
     private _router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
         componentHandler.upgradeDom();
   }
 
