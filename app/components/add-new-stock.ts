@@ -1,5 +1,5 @@
 import {Component, Output, Directive, ElementRef, AfterViewInit, OnInit} from '@angular/core';
-import {Router} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {Quote, QuoteSearch} from '../interfaces';
 import QuoteService from '../services/quote';
 import StocksService from '../services/stocks';
@@ -46,7 +46,7 @@ export default class implements OnInit {
   addItem(stock: QuoteSearch, value: number): void {
     this.stocks = [];
     this._stocksService.AddStock(stock, value);
-    this._snackbarService.showSnackbar('Added', () => this._router.navigate(['Portfolio', {}]), 'Return to Portfolio');
+    this._snackbarService.showSnackbar('Added', () => this._router.navigate(['/']), 'Return to Portfolio');
   }
 
   submitQuery(query: string): void {

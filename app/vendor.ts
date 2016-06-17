@@ -9,4 +9,4 @@ import '@angular/core';
 import '@angular/http';
 import '@angular/platform-browser-dynamic';
 import '@angular/platform-browser';
-import '@angular/router-deprecated';
+import '@angular/router';
