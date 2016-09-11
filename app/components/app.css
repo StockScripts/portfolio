@@ -13,7 +13,7 @@
   text-decoration: none;
 }
 
-.nav-link.router-link-active {
+.mdl-navigation .router-link-active {
   color: rgba(255,255,255, 1);
 }
 
@@ -34,9 +34,10 @@
     padding-left: 8px;
 }
 
-#add {
+.add-button {
   position: absolute;
   right: 40px;
   top: 50px;
   z-index: 999;
+  color: rgba(255,255,255,.6);
 }
