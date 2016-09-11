@@ -1,26 +1,14 @@
-import {Component, Output, Directive, ElementRef, AfterViewInit, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Quote, QuoteSearch} from '../interfaces';
+import { Component, Output, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Quote, QuoteSearch } from '../interfaces';
 import QuoteService from '../services/quote';
 import StocksService from '../services/stocks';
 import SnackbarService from '../services/snackbar';
 
-@Directive({
-  selector: '[mdlFocus]'
-})
-export class MdlFocus implements AfterViewInit {
-  constructor(private elementRef: ElementRef) { }
-
-  ngAfterViewInit(): void {
-    componentHandler.upgradeElement(this.elementRef.nativeElement.parentElement);
-    this.elementRef.nativeElement.focus();
-  }
-}
 @Component({
   selector: 'add-new-stock',
   styles: [require('./add-new-stock.css')],
-  template: require('./add-new-stock.html'),
-  directives: [MdlFocus]
+  template: require('./add-new-stock.html')
 })
 export default class implements OnInit {
   stocks: any[];
@@ -32,7 +20,7 @@ export default class implements OnInit {
   ) { }
 
   ngOnInit(): void {
-        componentHandler.upgradeDom();
+    componentHandler.upgradeDom();
   }
 
   selectItem(stock: QuoteSearch): void {

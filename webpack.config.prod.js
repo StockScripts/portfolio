@@ -12,6 +12,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.ts$/, loader: 'awesome-typescript-loader' },
+      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, loader: 'raw-loader' }
     ]
@@ -28,7 +29,6 @@ module.exports = {
       minChunks: Infinity,
       filename: 'vendor.js'
     }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.DedupePlugin()
+    new webpack.optimize.UglifyJsPlugin()
   ]
 };

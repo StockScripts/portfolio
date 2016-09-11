@@ -13,6 +13,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.ts$/, loader: 'awesome-typescript-loader' },
+      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, loader: 'raw-loader' }
     ]
@@ -28,7 +29,14 @@ module.exports = {
       name: 'vendor',
       minChunks: Infinity,
       filename: 'vendor.js'
-    }),
-    new webpack.optimize.DedupePlugin()
-  ]
+    })
+  ],
+  devServer: {
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    outputPath: './dist'
+  }
 };

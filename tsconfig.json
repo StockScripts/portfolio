@@ -10,8 +10,5 @@
   },
   "exclude": [
     "node_modules"
-  ],
-  "awesomeTypescriptLoaderOptions": {
-      "emitRequireType": true
-  }
+  ]
 }

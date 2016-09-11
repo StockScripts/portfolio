@@ -16,7 +16,7 @@
           <td>{{stock.Quantity}}</td>
           <td>{{stock.Price*1 | number:'1.2-2'}}</td>
           <td class="mdl-cell--hide-phone">{{stock.Price*stock.Quantity | number:'1.2-2'}}</td>
-          <td greenRed class="mdl-cell--hide-phone">{{stock.Change*1 | number:'1.2-2'}}</td>
+          <td negativePositive class="mdl-cell--hide-phone">{{stock.Change*1 | number:'1.2-2'}}</td>
         </tr>
       </tbody>
     </table>
