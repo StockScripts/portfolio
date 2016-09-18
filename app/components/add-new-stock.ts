@@ -1,6 +1,6 @@
-import { Component, Output, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Quote, QuoteSearch } from '../interfaces';
+import { QuoteSearch } from '../interfaces';
 import QuoteService from '../services/quote';
 import StocksService from '../services/stocks';
 import SnackbarService from '../services/snackbar';

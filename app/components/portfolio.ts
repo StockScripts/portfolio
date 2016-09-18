@@ -1,4 +1,4 @@
-import { Component, Directive, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Stock } from '../interfaces';
 import StocksService from '../services/stocks';
 import SnackbarService from '../services/snackbar';
